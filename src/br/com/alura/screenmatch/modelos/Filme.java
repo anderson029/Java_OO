@@ -7,8 +7,11 @@ import java.security.PublicKey;
 public class Filme extends Titulo implements Classificavel {
     private String diretor;
 
-    public Filme(String nome) {
-        this.setNome(nome);
+    /*Contrutores são criados para ter uma obrigatoriedade no método, construtores não são herdados.
+    * é preciso utlizar o super dentro do construtor para chamar a classe "pai".
+    *  */
+    public Filme(String nome, int anoDelancamento) {
+        super(nome, anoDelancamento);
     }
 
     public String getDiretor() {
@@ -23,7 +26,6 @@ public class Filme extends Titulo implements Classificavel {
     public int getClassificacao() {
         return (int) pegaMedia() / 2;
     }
-
     @Override
     public String toString() {
         return "Filme: " + this.getNome() + "("+ getAnoDeLancamento() + ")";
