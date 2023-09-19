@@ -5,6 +5,9 @@ import br.com.alura.screenmatch.modelos.Serie;
 import br.com.alura.screenmatch.modelos.Titulo;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class PrincipalComListas {
     public static void main(String[] args) {
@@ -21,15 +24,32 @@ public class PrincipalComListas {
         lista.add(meuFilme);
         lista.add(outroFilme);
         lista.add(lost);
-// (outra forma de fazer foreach,utilizando o recurso conhecido como Method Reference, que nada mais é do que uma forma reduzida de uma expressão lambda)
-//         lista.forEach(System.out::println);
+
+/* (outra forma de fazer foreach,utilizando o recurso conhecido como Method Reference, que nada mais é do que uma forma reduzida de uma expressão lambda)
+lista.forEach(System.out::println);*/
+
         for (Titulo item: lista) {
             System.out.println(item.getNome());
+
 // a partir do java 17 pode fazer dessa forma: if (item instanceof Filme filme && filme.getClassificacao > 2)
             if (item instanceof Filme) {
                 Filme filme = (Filme) item;
                 System.out.println("Classificação " + filme.getClassificacao());
             }
         }
+        ArrayList<String> buscaPorArtista = new ArrayList<>();
+        buscaPorArtista.add("Tom Hanks");
+        buscaPorArtista.add("Jim Carrey");
+        buscaPorArtista.add("Adam Sandler");
+        System.out.println(buscaPorArtista);
+
+        Collections.sort(buscaPorArtista);
+        System.out.println("Depois da ordenação: " + buscaPorArtista);
+
+        Collections.sort(lista);
+        System.out.println("Depois da ordenação:" + lista);
+
+        lista.sort(Comparator.comparing(Titulo::getAnoDeLancamento));
+        System.out.println("Ordenando por ano de lançamento: " + lista);
     }
 }
