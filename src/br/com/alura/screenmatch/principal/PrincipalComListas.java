@@ -25,8 +25,11 @@ public class PrincipalComListas {
 //         lista.forEach(System.out::println);
         for (Titulo item: lista) {
             System.out.println(item.getNome());
-            Filme filme = (Filme) item;
-            System.out.println("Classificação" + filme.getClassificacao());
+// a partir do java 17 pode fazer dessa forma: if (item instanceof Filme filme && filme.getClassificacao > 2)
+            if (item instanceof Filme) {
+                Filme filme = (Filme) item;
+                System.out.println("Classificação " + filme.getClassificacao());
+            }
         }
     }
 }
